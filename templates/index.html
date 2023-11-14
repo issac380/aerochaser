@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <style>
+        #message-box {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>FlightNow</h1>
+
+    </p>Welcome! This is a simple frontend to test implmenting a scalable web application with a flask/python backend.</p>
+    </p>Press the button below to show the next 2 hours of flights arriving into LAX airport.</p>
+
+    <button onclick="getMessage()">LAX Arrivals</button>
+    
+    <div id="message-box"></div>
+    
+    <script>
+        function getMessage() {
+            fetch('/get_message')
+                .then(response => response.json())
+                .then(data => {
+                    var messageBox = document.getElementById('message-box');
+                    messageBox.innerHTML = 'Message from Python: ' + data.message;
+                    messageBox.style.display = 'block';
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

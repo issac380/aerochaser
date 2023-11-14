@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aero-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aero-app
+  template:
+    metadata:
+      labels:
+        app: aero-app
+    spec:
+      containers:
+      - name: aero-app
+        image: aero-app:latest
+        ports:
+        - containerPort: 80
